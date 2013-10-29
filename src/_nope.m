@@ -44,8 +44,8 @@ static struct PyMethodDef methods[] = {
 
 static struct PyModuleDef moduledef = {
     PyModuleDef_HEAD_INIT,
-    "_nonap",
-    "_nonap extension",
+    "_nope",
+    "_nope extension",
     -1,
     methods,
     NULL,
@@ -54,11 +54,11 @@ static struct PyModuleDef moduledef = {
     NULL
 };
 
-PyObject* PyInit__nonap(void)
+PyObject* PyInit__nope(void)
 
 #else
 
-void init_nonap(void)
+void init_nope(void)
 #endif
 {
 
@@ -68,7 +68,7 @@ void init_nonap(void)
     module = PyModule_Create(&moduledef);
     if (module==NULL) return NULL;
 #else
-    module = Py_InitModule4("_nonap",
+    module = Py_InitModule4("_nope",
                             methods,
                             "Disable App Nap on OS X 10.9",
                             NULL,

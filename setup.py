@@ -4,26 +4,33 @@
 #  Distributed under the terms of the 2-clause BSD License.
 #-----------------------------------------------------------------------------
 
+import sys
+import platform
+
 from distutils.core import setup
 from distutils.extension import Extension
+from distutils.version import LooseVersion as V
+
+if sys.platform != 'darwin' or V(platform.mac_ver()[0]) < V('10.9'):
+    raise ValueError("Only meant for install on OS X >= 10.9")
 
 extensions = [
-    Extension('nonap._nonap',
-        sources = ['src/_nonap.m'],
+    Extension('nopenap._nope',
+        sources = ['src/_nope.m'],
         extra_link_args = ['-framework', 'Foundation']
     )
 ]
 
 setup_args = dict(
-    name = "nonap",
+    name = "nopenap",
     version = '0.0.1',
     ext_modules = extensions,
-    packages = ["nonap"],
+    packages = ["nopenap"],
     author = "Min Ragan-Kelley",
     author_email = "benjaminrk@gmail.com",
-    url = 'http://github.com/minrk/nonap',
-    download_url = 'http://github.com/minrk/nonap/releases',
-    description = "Disable App Nap on OS X",
+    url = 'http://github.com/minrk/nopenap',
+    download_url = 'http://github.com/minrk/nopenap/releases',
+    description = "Disable App Nap on OS X 10.9",
     long_description = "",
     license = "BSD",
     classifiers = [
