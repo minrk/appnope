@@ -15,21 +15,21 @@ if sys.platform != 'darwin' or V(platform.mac_ver()[0]) < V('10.9'):
     raise ValueError("Only meant for install on OS X >= 10.9")
 
 extensions = [
-    Extension('nopenap._nope',
+    Extension('appnope._nope',
         sources = ['src/_nope.m'],
         extra_link_args = ['-framework', 'Foundation']
     )
 ]
 
 setup_args = dict(
-    name = "nopenap",
+    name = "appnope",
     version = '0.0.1',
     ext_modules = extensions,
-    packages = ["nopenap"],
+    packages = ["appnope"],
     author = "Min Ragan-Kelley",
     author_email = "benjaminrk@gmail.com",
-    url = 'http://github.com/minrk/nopenap',
-    download_url = 'http://github.com/minrk/nopenap/releases',
+    url = 'http://github.com/minrk/appnope',
+    download_url = 'http://github.com/minrk/appnope/releases',
     description = "Disable App Nap on OS X 10.9",
     long_description = "",
     license = "BSD",
