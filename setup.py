@@ -14,17 +14,9 @@ from distutils.version import LooseVersion as V
 if sys.platform != 'darwin' or V(platform.mac_ver()[0]) < V('10.9'):
     raise ValueError("Only meant for install on OS X >= 10.9")
 
-extensions = [
-    Extension('appnope._nope',
-        sources = ['src/_nope.m'],
-        extra_link_args = ['-framework', 'Foundation']
-    )
-]
-
 setup_args = dict(
     name = "appnope",
-    version = '0.0.1',
-    ext_modules = extensions,
+    version = '0.0.2',
     packages = ["appnope"],
     author = "Min Ragan-Kelley",
     author_email = "benjaminrk@gmail.com",
