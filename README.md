@@ -1,12 +1,11 @@
 # `appnope`
 
-Simple extension for disabling App Nap on OS X 10.9,
+Simple package for disabling App Nap on OS X 10.9,
 which can be problematic.
 
 Simply `import appnope`, and App Nap should be disabled.
 
-This is my first Cocoa Python extension, so it may not work for anyone but me,
-but it could be interesting.
+It uses ctypes to wrap a `[NSProcessInfo beginActivityWithOptions]` call to disable App Nap.
 
 To install, just:
 
