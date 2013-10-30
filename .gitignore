@@ -4,3 +4,5 @@ __pycache__
 *.o
 dist
 build
+MANIFEST
+*.egg-info
