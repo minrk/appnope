@@ -4,10 +4,11 @@
 #  Distributed under the terms of the 2-clause BSD License.
 #-----------------------------------------------------------------------------
 
+from contextlib import contextmanager
+
 import ctypes
 import ctypes.util
 
-Foundation = ctypes.cdll.LoadLibrary(ctypes.util.find_library('Foundation'))
 objc = ctypes.cdll.LoadLibrary(ctypes.util.find_library('objc'))
 
 void_p = ctypes.c_void_p
@@ -21,6 +22,7 @@ objc.objc_msgSend.argtypes = [void_p, void_p]
 msg = objc.objc_msgSend
 
 def _utf8(s):
+    """ensure utf8 bytes"""
     if not isinstance(s, bytes):
         s = s.encode('utf8')
     return s
@@ -77,7 +79,7 @@ def nope():
     global _theactivity
     _theactivity = beginActivityWithOptions(
         NSActivityUserInitiatedAllowingIdleSystemSleep,
-        b"Because Reasons"
+        "Because Reasons"
     )
 
 def nap():
@@ -86,6 +88,22 @@ def nap():
     if _theactivity is not None:
         endActivity(_theactivity)
         _theactivity = None
+
+
+@contextmanager
+def nope_context(
+        options=NSActivityUserInitiatedAllowingIdleSystemSleep,
+        reason="Because Reasons"
+    ):
+    """context manager for beginActivityWithOptions.
+    
+    Within this context, App Nap will be disabled.
+    """
+    activity = beginActivityWithOptions(options, reason)
+    try:
+        yield
+    finally:
+        endActivity(activity)
 
 __all__ = [
     "NSActivityIdleDisplaySleepDisabled",
@@ -100,4 +118,5 @@ __all__ = [
     "endActivity",
     "nope",
     "nap",
+    "nope_context",
 ]
