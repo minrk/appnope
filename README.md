@@ -3,7 +3,25 @@
 Simple package for disabling App Nap on OS X 10.9,
 which can be problematic.
 
-Simply `import appnope`, and App Nap should be disabled.
+To disable App Nap:
+
+```python
+import appnope
+appnope.nope()
+```
+
+To reenable, for some reason:
+
+```python
+appnope.nap()
+```
+
+Or to only disable App Nap for a particular block:
+
+```
+with appnope.nope_context():
+    do_important_stuff()
+```
 
 It uses ctypes to wrap a `[NSProcessInfo beginActivityWithOptions]` call to disable App Nap.
 
