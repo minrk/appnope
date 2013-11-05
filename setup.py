@@ -16,7 +16,7 @@ if sys.platform != 'darwin' or V(platform.mac_ver()[0]) < V('10.9'):
 
 setup_args = dict(
     name = "appnope",
-    version = '0.0.2',
+    version = '0.0.3',
     packages = ["appnope"],
     author = "Min Ragan-Kelley",
     author_email = "benjaminrk@gmail.com",
