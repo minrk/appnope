@@ -121,5 +121,6 @@ __all__ = [
     "endActivity",
     "nope",
     "nap",
+    "napping_allowed",
     "nope_scope",
 ]
