@@ -26,10 +26,5 @@ def nope_scope(
     ):
     yield
 
-__all__ = [
-    "beginActivityWithOptions",
-    "endActivity",
-    "nope",
-    "nap",
-    "nope_scope",
-]
+def napping_allowed():
+    return True

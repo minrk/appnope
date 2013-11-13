@@ -89,6 +89,9 @@ def nap():
         endActivity(_theactivity)
         _theactivity = None
 
+def napping_allowed():
+    """is napping allowed?"""
+    return _theactivity is None
 
 @contextmanager
 def nope_scope(
