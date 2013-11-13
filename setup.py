@@ -14,9 +14,14 @@ from distutils.version import LooseVersion as V
 if sys.platform != 'darwin' or V(platform.mac_ver()[0]) < V('10.9'):
     raise ValueError("Only meant for install on OS X >= 10.9")
 
+with open('appnope/__init__.py') as f:
+    for line in f:
+        if line.startswith('__version__'):
+            exec line
+
 setup_args = dict(
     name = "appnope",
-    version = '0.0.3',
+    version = __version__,
     packages = ["appnope"],
     author = "Min Ragan-Kelley",
     author_email = "benjaminrk@gmail.com",
