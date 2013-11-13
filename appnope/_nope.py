@@ -91,7 +91,7 @@ def nap():
 
 
 @contextmanager
-def nope_context(
+def nope_scope(
         options=NSActivityUserInitiatedAllowingIdleSystemSleep,
         reason="Because Reasons"
     ):
@@ -118,5 +118,5 @@ __all__ = [
     "endActivity",
     "nope",
     "nap",
-    "nope_context",
+    "nope_scope",
 ]

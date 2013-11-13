@@ -16,10 +16,10 @@ To reenable, for some reason:
 appnope.nap()
 ```
 
-Or to only disable App Nap for a particular block:
+or to only disable App Nap for a particular block:
 
 ```
-with appnope.nope_context():
+with appnope.nope_scope():
     do_important_stuff()
 ```
 

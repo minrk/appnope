@@ -20,7 +20,7 @@ def nap():
 
 
 @contextmanager
-def nope_context(
+def nope_scope(
         options=0,
         reason="Because Reasons"
     ):
@@ -31,5 +31,5 @@ __all__ = [
     "endActivity",
     "nope",
     "nap",
-    "nope_context",
+    "nope_scope",
 ]
