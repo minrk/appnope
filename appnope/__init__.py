@@ -1,4 +1,4 @@
-__version__ = '0.0.6-dev'
+__version__ = '0.0.6'
 
 import sys
 import platform
