@@ -17,7 +17,8 @@ if sys.platform != 'darwin' or V(platform.mac_ver()[0]) < V('10.9'):
 with open('appnope/__init__.py') as f:
     for line in f:
         if line.startswith('__version__'):
-            exec line
+            __version__ = eval(line.split('=', 1)[1])
+            break
 
 setup_args = dict(
     name = "appnope",
