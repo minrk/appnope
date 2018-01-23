@@ -6,12 +6,13 @@
 
 from __future__ import print_function
 
+
 import sys
 import platform
 
-from distutils.core import setup
-from distutils.extension import Extension
 from distutils.version import LooseVersion as V
+from setuptools import setup
+from setuptools.command.bdist_egg import bdist_egg
 
 if sys.platform != 'darwin':
     raise ValueError("Only meant for install on OS X >= 10.9")
@@ -24,10 +25,19 @@ with open('appnope/__init__.py') as f:
             __version__ = eval(line.split('=', 1)[1])
             break
 
+class bdist_egg_disabled(bdist_egg):
+    """Disabled version of bdist_egg
+
+    Prevents setup.py install from performing setuptools' default easy_install,
+    which it should never ever do.
+    """
+    def run(self):
+        sys.exit("Aborting implicit building of eggs. Use `pip install .` to install from source.")
+
+
 setup_args = dict(
     name = "appnope",
     version = __version__,
-    packages = ["appnope"],
     author = "Min Ragan-Kelley",
     author_email = "benjaminrk@gmail.com",
     url = 'http://github.com/minrk/appnope',
@@ -35,6 +45,9 @@ setup_args = dict(
     description = "Disable App Nap on OS X 10.9",
     long_description = "",
     license = "BSD",
+    cmdclass = {
+        'bdist_egg': bdist_egg if 'bdist_egg' in sys.argv else 'bdist_egg_disabled',
+    },
     classifiers = [
         'License :: OSI Approved :: BSD License',
         'Operating System :: MacOS :: MacOS X',
@@ -48,4 +61,3 @@ setup_args = dict(
 )
 
 setup(**setup_args)
-
