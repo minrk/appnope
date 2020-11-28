@@ -4,6 +4,10 @@
 #  Distributed under the terms of the 2-clause BSD License.
 #-----------------------------------------------------------------------------
 
+# Needed to init ObjC, otherwise C('NSString') returns None
+# TODO: Investigate why and include a better fix.
+from urllib.request import urlopen
+
 from contextlib import contextmanager
 
 import ctypes
@@ -56,9 +60,13 @@ def beginActivityWithOptions(options, reason=""):
     """
     NSProcessInfo = C('NSProcessInfo')
     NSString = C('NSString')
+    assert(NSString is not None)
     
+    objc.objc_msgSend.argtypes = [void_p, void_p, void_p]
     reason = msg(NSString, n("stringWithUTF8String:"), _utf8(reason))
+    objc.objc_msgSend.argtypes = [void_p, void_p]
     info = msg(NSProcessInfo, n('processInfo'))
+    objc.objc_msgSend.argtypes = [void_p, void_p, ull, void_p]
     activity = msg(info,
         n('beginActivityWithOptions:reason:'),
         ull(options),
@@ -69,6 +77,7 @@ def beginActivityWithOptions(options, reason=""):
 def endActivity(activity):
     """end a process activity assertion"""
     NSProcessInfo = C('NSProcessInfo')
+    objc.objc_msgSend.argtypes = [void_p, void_p]
     info = msg(NSProcessInfo, n('processInfo'))
     msg(info, n("endActivity:"), void_p(activity))
 
