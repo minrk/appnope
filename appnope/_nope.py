@@ -79,6 +79,7 @@ def endActivity(activity):
     NSProcessInfo = C('NSProcessInfo')
     objc.objc_msgSend.argtypes = [void_p, void_p]
     info = msg(NSProcessInfo, n('processInfo'))
+    objc.objc_msgSend.argtypes = [void_p, void_p, void_p]
     msg(info, n("endActivity:"), void_p(activity))
 
 _theactivity = None
