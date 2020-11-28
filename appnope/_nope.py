@@ -4,16 +4,13 @@
 #  Distributed under the terms of the 2-clause BSD License.
 #-----------------------------------------------------------------------------
 
-# Needed to init ObjC, otherwise C('NSString') returns None
-# TODO: Investigate why and include a better fix.
-from urllib.request import urlopen
-
 from contextlib import contextmanager
 
 import ctypes
 import ctypes.util
 
 objc = ctypes.cdll.LoadLibrary(ctypes.util.find_library('objc'))
+_ = ctypes.cdll.LoadLibrary(ctypes.util.find_library('Foundation'))
 
 void_p = ctypes.c_void_p
 ull = ctypes.c_uint64
@@ -37,7 +34,9 @@ def n(name):
 
 def C(classname):
     """get an ObjC Class by name"""
-    return objc.objc_getClass(_utf8(classname))
+    ret = objc.objc_getClass(_utf8(classname))
+    assert ret is not None, "Couldn't find Class %s" % classname
+    return ret
 
 # constants from Foundation
 
@@ -60,7 +59,6 @@ def beginActivityWithOptions(options, reason=""):
     """
     NSProcessInfo = C('NSProcessInfo')
     NSString = C('NSString')
-    assert(NSString is not None)
     
     objc.objc_msgSend.argtypes = [void_p, void_p, void_p]
     reason = msg(NSString, n("stringWithUTF8String:"), _utf8(reason))
