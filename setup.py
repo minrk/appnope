@@ -15,9 +15,9 @@ from setuptools import setup
 from setuptools.command.bdist_egg import bdist_egg
 
 if sys.platform != 'darwin':
-    raise ValueError("Only meant for install on OS X >= 10.9")
+    raise ValueError("Only meant for install on macOS >= 10.9")
 elif V(platform.mac_ver()[0]) < V('10.9'):
-    print("Only meant for install on OS X >= 10.9", file=sys.stderr)
+    print("Only meant for install on macOS >= 10.9", file=sys.stderr)
 
 with open('appnope/__init__.py') as f:
     for line in f:
@@ -35,15 +35,19 @@ class bdist_egg_disabled(bdist_egg):
         sys.exit("Aborting implicit building of eggs. Use `pip install .` to install from source.")
 
 
+with open("README.md") as f:
+    readme = f.read()
+
+
 setup_args = dict(
     name = "appnope",
     version = __version__,
     author = "Min Ragan-Kelley",
     author_email = "benjaminrk@gmail.com",
     url = 'http://github.com/minrk/appnope',
-    download_url = 'http://github.com/minrk/appnope/releases',
-    description = "Disable App Nap on OS X 10.9",
-    long_description = "",
+    description = "Disable App Nap on macOS >= 10.9",
+    long_description = readme,
+    long_description_content_type="text/markdown",
     license = "BSD",
     cmdclass = {
         'bdist_egg': bdist_egg if 'bdist_egg' in sys.argv else 'bdist_egg_disabled',
