@@ -1,0 +1,53 @@
+name: Test
+
+on:
+  push:
+  pull_request:
+
+env:
+  FORCE_COLOR: "1"
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os || 'macos-10.15' }}
+    timeout-minutes: 10
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - macos-10.15
+        python:
+          - 2.7
+          - 3.6
+          - 3.7
+          - 3.8
+          - 3.9
+        include:
+          - os: macos-11.0
+            python: 3.9
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: install dependencies
+        run: |
+          pip install --upgrade pip wheel
+          pip install pytest
+
+      - name: show environment
+        run: |
+          pip freeze
+
+      - name: install
+        run: |
+          pip install -v -e .
+
+      - name: run tests
+        run: |
+          python -m pytest -v
