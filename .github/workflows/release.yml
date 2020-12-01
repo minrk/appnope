@@ -27,6 +27,12 @@ jobs:
           python -m build --sdist --wheel .
           ls -l dist
 
+      - name: verify wheel
+        run: |
+          cd dist
+          pip install ./*.whl
+          python -c 'import appnope'
+
       - name: Publish to PyPI
         if: startsWith(github.ref, 'refs/tags/')
         env:
