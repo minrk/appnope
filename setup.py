@@ -40,13 +40,14 @@ with open("README.md") as f:
 
 
 setup_args = dict(
-    name = "appnope",
-    version = __version__,
-    author = "Min Ragan-Kelley",
-    author_email = "benjaminrk@gmail.com",
-    url = 'http://github.com/minrk/appnope',
-    description = "Disable App Nap on macOS >= 10.9",
-    long_description = readme,
+    name="appnope",
+    version=__version__,
+    packages=["appnope"],
+    author="Min Ragan-Kelley",
+    author_email="benjaminrk@gmail.com",
+    url="http://github.com/minrk/appnope",
+    description="Disable App Nap on macOS >= 10.9",
+    long_description=readme,
     long_description_content_type="text/markdown",
     license = "BSD",
     cmdclass = {
