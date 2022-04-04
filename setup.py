@@ -6,18 +6,11 @@
 
 from __future__ import print_function
 
-
 import sys
-import platform
 
-from distutils.version import LooseVersion as V
 from setuptools import setup
 from setuptools.command.bdist_egg import bdist_egg
 
-if sys.platform != 'darwin':
-    raise ValueError("Only meant for install on macOS >= 10.9")
-elif V(platform.mac_ver()[0]) < V('10.9'):
-    print("Only meant for install on macOS >= 10.9", file=sys.stderr)
 
 with open('appnope/__init__.py') as f:
     for line in f:
