@@ -8,6 +8,8 @@ on:
     branches:
       - main
       - "*.x"
+    tags:
+      - "*"
   pull_request:
 
 jobs:
