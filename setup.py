@@ -47,15 +47,13 @@ setup_args = dict(
     long_description=readme,
     long_description_content_type="text/markdown",
     license="BSD",
+    python_requires=">=3.6",
     cmdclass={
         "bdist_egg": bdist_egg if "bdist_egg" in sys.argv else "bdist_egg_disabled",
     },
     classifiers=[
         "License :: OSI Approved :: BSD License",
         "Operating System :: MacOS :: MacOS X",
-        "Programming Language :: Python :: 2",
-        "Programming Language :: Python :: 2.6",
-        "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3",
     ],
 )
