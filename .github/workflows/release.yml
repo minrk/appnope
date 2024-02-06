@@ -5,6 +5,9 @@ name: Release
 # but only publish to PyPI on tags
 on:
   push:
+    branches:
+      - main
+      - '*.x'
   pull_request:
 
 jobs:
