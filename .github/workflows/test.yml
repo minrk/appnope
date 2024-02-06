@@ -26,8 +26,8 @@ jobs:
           - "3.11"
           - "3.12"
         include:
-          - os: macos-11
-            python: "2.7"
+          # - os: macos-11
+          #   python: "2.7"
           - os: macos-11
             python: "3.6"
           - os: macos-11
