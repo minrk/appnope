@@ -18,7 +18,7 @@ exclude: "(.*/)?secrets/.*|code_of_conduct.md|rule_of_participation.md"
 repos:
   # autoformat and lint Python code
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.8.6
+    rev: v0.12.2
     hooks:
       - id: ruff
         types_or: [python, jupyter]
