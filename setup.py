@@ -46,7 +46,7 @@ setup_args = dict(
     description="Disable App Nap on macOS >= 10.9",
     long_description=readme,
     long_description_content_type="text/markdown",
-    license="BSD",
+    license="BSD-2-Clause",
     python_requires=">=3.6",
     cmdclass={
         "bdist_egg": bdist_egg if "bdist_egg" in sys.argv else "bdist_egg_disabled",
