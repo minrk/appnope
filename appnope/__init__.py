@@ -1,8 +1,8 @@
 __version__ = "0.1.4"
 
+import platform
 import re
 import sys
-import platform
 
 
 def _v(version_s):
@@ -10,6 +10,6 @@ def _v(version_s):
 
 
 if sys.platform != "darwin" or _v(platform.mac_ver()[0]) < _v("10.9"):
-    from ._dummy import *  # noqa
+    from ._dummy import *
 else:
-    from ._nope import *  # noqa
+    from ._nope import *

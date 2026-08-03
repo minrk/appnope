@@ -4,13 +4,11 @@
 #  Distributed under the terms of the 2-clause BSD License.
 # -----------------------------------------------------------------------------
 
-from __future__ import print_function
 
 import sys
 
 from setuptools import setup
 from setuptools.command.bdist_egg import bdist_egg
-
 
 with open("appnope/__init__.py") as f:
     for line in f:
