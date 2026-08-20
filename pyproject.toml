@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "appnope"
-version = "1.0.0"
+version = "1.0.0.dev0"
 description = "Disable App Nap on macOS >= 10.9"
 readme = "README.md"
 license = "BSD-2-Clause"
@@ -28,7 +28,7 @@ Source = "https://github.com/minrk/appnope"
 github_url = "https://github.com/minrk/appnope"
 
 [tool.tbump.version]
-current = "1.0.0"
+current = "1.0.0.dev0"
 regex = '''
     (?P<major>\d+)
     \.
