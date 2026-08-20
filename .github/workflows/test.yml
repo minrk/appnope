@@ -22,35 +22,23 @@ jobs:
         os:
           - macos-latest
         python:
-          - "3.8"
-          - "3.9"
-          - "3.10"
           - "3.11"
           - "3.12"
+          - "3.13"
+          - "3.14"
         include:
-          # - os: macos-11
-          #   python: "2.7"
-          - os: macos-11
-            python: "3.6"
-          - os: macos-11
-            python: "3.7"
+          - os: macos-14
+            python: "3.9"
+          - os: macos-15
+            python: "3.10"
 
     steps:
       - uses: actions/checkout@v7
 
       - name: setup python
-        if: matrix.os != 'macos-11.0'
         uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python }}
-
-      - name: setup homebrew python
-        if: matrix.os == 'macos-11.0'
-        run: |
-          brew install python@${{ matrix.python }}
-          env_dir=$(mktemp -d)
-          /usr/local/opt/python@${{ matrix.python }}/bin/python3 -mvenv "$env_dir"
-          echo "PATH=$env_dir/bin:$PATH" >> "$GITHUB_ENV"
 
       - name: install dependencies
         run: |
