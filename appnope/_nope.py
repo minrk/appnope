@@ -4,10 +4,9 @@
 #  Distributed under the terms of the 2-clause BSD License.
 # -----------------------------------------------------------------------------
 
-from contextlib import contextmanager
-
 import ctypes
 import ctypes.util
+from contextlib import contextmanager
 
 objc = ctypes.cdll.LoadLibrary(ctypes.util.find_library("objc"))
 _ = ctypes.cdll.LoadLibrary(ctypes.util.find_library("Foundation"))
@@ -127,18 +126,18 @@ def nope_scope(
 
 
 __all__ = [
+    "NSActivityAutomaticTerminationDisabled",
+    "NSActivityBackground",
     "NSActivityIdleDisplaySleepDisabled",
     "NSActivityIdleSystemSleepDisabled",
+    "NSActivityLatencyCritical",
     "NSActivitySuddenTerminationDisabled",
-    "NSActivityAutomaticTerminationDisabled",
     "NSActivityUserInitiated",
     "NSActivityUserInitiatedAllowingIdleSystemSleep",
-    "NSActivityBackground",
-    "NSActivityLatencyCritical",
     "beginActivityWithOptions",
     "endActivity",
-    "nope",
     "nap",
     "napping_allowed",
+    "nope",
     "nope_scope",
 ]
